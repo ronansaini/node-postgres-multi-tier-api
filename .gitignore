@@ -1,0 +1,9 @@
+# Local environment secret variables
+.env
+
+# Dependency folders
+node_modules/
+
+# Operating system metadata files
+.DS_Store
+Thumbs.db
