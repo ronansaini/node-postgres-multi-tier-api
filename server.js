@@ -9,6 +9,7 @@ app.use(express.json());
 
 // Mapping endpoint paths directly to presentation tier functions
 app.get('/api/products', productController.getProductsController);
+app.post('/api/products', productController.postProductController);
 app.put('/api/products/:id', productController.putProductController);
 app.delete('/api/products/:id', productController.deleteProductController);
 

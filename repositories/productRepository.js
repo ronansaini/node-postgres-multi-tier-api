@@ -12,6 +12,11 @@ async function getAllProducts() {
     const result = await pool.query(queryText);
     return result.rows;
 }
+async function createProduct(name, price) {
+    const queryText = 'INSERT INTO test_products (product_name, price) VALUES ($1, $2) RETURNING *;';
+    const result = await pool.query(queryText, [name, price]);
+    return result.rows[0];
+}
 
 async function updateProduct(id, name, price) {
     const queryText = 'UPDATE test_products SET product_name = $1, price = $2 WHERE id = $3 RETURNING *;';
@@ -25,4 +30,4 @@ async function deleteProduct(id) {
     return result;
 }
 
-module.exports = { getAllProducts, updateProduct, deleteProduct };
+module.exports = { getAllProducts, createProduct, updateProduct, deleteProduct };

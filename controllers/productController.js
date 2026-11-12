@@ -9,6 +9,25 @@ async function getProductsController(req, res, next) {
     }
 }
 
+async function postProductController(req, res, next) {
+    try {
+        const name = req.body.product_name;
+        const price = req.body.price;
+
+        if (!name || price === undefined) {
+            const err = new Error('Missing parameters');
+            err.statusCode = 400;
+            throw err;
+        }
+
+        const newProduct = await productService.addProduct(name, price);
+        res.status(201).json({ message: 'Created!', product: newProduct });
+    } catch (err) {
+        next(err);
+    }
+}
+
+
 async function putProductController(req, res, next) {
     try {
         const productId = req.params.id;
@@ -38,4 +57,4 @@ async function deleteProductController(req, res, next) {
     }
 }
 
-module.exports = { getProductsController, putProductController, deleteProductController };
+module.exports = { getProductsController,  postProductController,  putProductController, deleteProductController };

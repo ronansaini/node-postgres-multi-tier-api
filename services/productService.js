@@ -3,6 +3,14 @@ const productRepository = require('../repositories/productRepository');
 async function fetchProducts() {
     return await productRepository.getAllProducts();
 }
+async function addProduct(name, price) {
+    if (price <= 0) {
+        const customErr = new Error('Price must be greater than zero.');
+        customErr.statusCode = 400;
+        throw customErr;
+    }
+    return await productRepository.createProduct(name, price);
+}
 
 async function modifyProduct(id, name, price) {
     if (price <= 0) {
@@ -32,4 +40,4 @@ async function removeProduct(id) {
     return result.rows;
 }
 
-module.exports = { fetchProducts, modifyProduct, removeProduct };
+module.exports = { fetchProducts, addProduct, modifyProduct, removeProduct };
