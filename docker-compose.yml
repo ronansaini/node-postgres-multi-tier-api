@@ -19,7 +19,7 @@ services:
       retries: 5
 
   api:
-    build: .
+    image: mohhit/node-postgres-multi-tier-api:latest
     container_name: products_api
     restart: always
     ports:
