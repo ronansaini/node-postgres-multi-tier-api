@@ -24,5 +24,5 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(PORT, function () {
-    console.log('Multi-tier REST API is active on http://localhost:' + PORT);
+    console.log('Multi-tier REST API v2 is live on Azure!' + PORT);
 });
